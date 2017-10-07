@@ -22,7 +22,7 @@ void Utils::ReadFromTxt(std::string fileIn, std::string fileOut, Data& o_data)
 	std::ifstream streamFileIn(fileIn);
 	std::string line;
 	std::getline(streamFileIn, line);//skip headers
-	bool headersReaded = false;
+	bool headersRead = false;
 	uint64_t numberOfRow = 0;
 	while (!streamFileIn.eof())
 	{
@@ -31,13 +31,13 @@ void Utils::ReadFromTxt(std::string fileIn, std::string fileOut, Data& o_data)
 		int valueIndex = 0;
 		Data::Row row;
 		std::string value;
-		if (!headersReaded)
+		if (!headersRead)
 		{
 			std::getline(ss, value, ',');
 			o_data.m_ticket = value;
 			std::getline(ss, value, ',');
 			o_data.m_period = std::atof(value.c_str());
-			headersReaded = true;
+			headersRead = true;
 		}
 		else
 		{
@@ -69,7 +69,7 @@ void Utils::ReadFromTxt(std::string fileIn, std::string fileOut, Data& o_data)
 		o_data.m_data.push_back(row);
 		numberOfRow++;
 	}
-	std::cout << "Number of readed rows is " << numberOfRow << '\n';
+	std::cout << "Number of read rows is " << numberOfRow << '\n';
 };
 
 
