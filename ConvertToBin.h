@@ -85,7 +85,7 @@ std::istream& operator >> (std::istream& is, Data& obj)
 	is.read(reinterpret_cast<char*>(&obj.m_period), sizeof(float));
 	size_t size;
 	is.read(reinterpret_cast<char*>(&size), sizeof(size_t));
-	obj.m_data.resize(size);
+	obj.m_data.resize(size/sizeof(Data::Row));
 	is.read(reinterpret_cast<char*>(&obj.m_data[0]), obj.GetSizeInBytes());
 
 	return is;
